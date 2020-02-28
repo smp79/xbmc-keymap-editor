@@ -32,17 +32,17 @@ class Editor(object):
     def start(self):
         while True:
             # Select context menu
-            idx = Dialog().select(tr(30007), WINDOWS.values())
+            idx = Dialog().select(tr(30007), list(WINDOWS.values()))
             if idx == -1:
                 break
-            window = WINDOWS.keys()[idx]
+            window = list(WINDOWS.keys())[idx]
 
             while True:
                 # Select category menu
-                idx = Dialog().select(tr(30008), ACTIONS.keys())
+                idx = Dialog().select(tr(30008), list(ACTIONS.keys()))
                 if idx == -1:
                     break
-                category = ACTIONS.keys()[idx]
+                category = list(ACTIONS.keys())[idx]
 
                 while True:
                     # Select action menu
@@ -77,17 +77,17 @@ class Editor(object):
                             self.dirty = True
 
     def _current_keymap(self, window, category):
-        actions = OrderedDict([(action, "") for action in ACTIONS[category].keys()])
+        actions = OrderedDict([(action, "") for action in list(ACTIONS[category].keys())])
         for w, a, k in self.defaultkeymap:
             if w == window:
-                if a in actions.keys():
+                if a in list(actions.keys()):
                     actions[a] = k
         for w, a, k in self.userkeymap:
             if w == window:
-                if a in actions.keys():
+                if a in list(actions.keys()):
                     actions[a] = k
         names = ACTIONS[category]
-        return [(action, key, names[action]) for action, key in actions.iteritems()]
+        return [(action, key, names[action]) for action, key in actions.items()]
 
 
 class KeyListener(WindowXMLDialog):

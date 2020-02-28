@@ -1,3 +1,6 @@
+[B]v1.0.11[/B]
+- Changes for v19 Matrix and Python 3
+
 [B]v1.0.10[/B]
 - Added support for v17 Krypton
 
